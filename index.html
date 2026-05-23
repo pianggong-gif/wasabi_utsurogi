@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>うつろぎ 蕎麦・山葵 ガイド</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700&family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:    #1a2610;
+  --ink2:   #3d5230;
+  --paper:  #f5f8f0;
+  --paper2: #e8f0e0;
+  --green:  #3a6b2a;
+  --green2: #5a9a42;
+  --gold:   #8a7020;
+  --light:  #c8ddb8;
+  --border: #a8c890;
+  --shadow: rgba(30,60,10,0.12);
+  --dark:   #1e3010;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Noto Sans JP', sans-serif; background: var(--paper); color: var(--ink); min-height: 100vh; }
+
+/* HEADER */
+header { background: var(--dark); color: #fff; position: sticky; top: 0; z-index: 100; box-shadow: 0 3px 12px var(--shadow); }
+.header-top { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px 8px; }
+.header-title { font-family: 'Shippori Mincho', serif; font-size: clamp(14px,4vw,20px); line-height: 1.3; }
+.header-title span { font-size: 0.6em; color: #a8d880; display: block; font-family: 'Noto Sans JP', sans-serif; font-weight: 400; letter-spacing: 0.08em; }
+.lang-bar { background: rgba(255,255,255,0.07); display: flex; gap: 4px; flex-wrap: wrap; justify-content: center; padding: 6px 12px 8px; border-top: 1px solid rgba(255,255,255,0.1); }
+.lang-btn { background: transparent; border: 1px solid rgba(255,255,255,0.3); color: rgba(255,255,255,0.75); padding: 4px 10px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: all 0.18s; font-family: 'Noto Sans JP', sans-serif; white-space: nowrap; }
+.lang-btn:hover { background: rgba(255,255,255,0.12); color: #fff; }
+.lang-btn.active { background: var(--green2); border-color: var(--green2); color: #fff; font-weight: 700; }
+
+/* NAV */
+.nav-tabs { display: flex; overflow-x: auto; background: var(--paper2); border-bottom: 2px solid var(--border); scrollbar-width: none; }
+.nav-tabs::-webkit-scrollbar { display: none; }
+.nav-tab { flex: none; padding: 10px 16px; font-size: 13px; font-weight: 500; color: var(--ink2); cursor: pointer; border-bottom: 3px solid transparent; transition: all 0.15s; white-space: nowrap; background: none; border-top: none; border-left: none; border-right: none; }
+.nav-tab:hover { color: var(--green); }
+.nav-tab.active { color: var(--green); border-bottom-color: var(--green); font-weight: 700; }
+
+/* MAIN */
+main { padding: 16px; max-width: 700px; margin: 0 auto; }
+.section { display: none; }
+.section.active { display: block; }
+
+/* HERO */
+.hero { background: var(--dark); border-radius: 16px; padding: 28px 20px; margin-bottom: 16px; color: #fff; text-align: center; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 30%, rgba(90,154,66,0.25) 0%, transparent 60%); pointer-events: none; }
+.hero-jp { font-family: 'Shippori Mincho', serif; font-size: clamp(22px,6vw,32px); color: #a8d880; margin-bottom: 4px; }
+.hero-en { font-size: 14px; color: rgba(255,255,255,0.7); letter-spacing: 0.1em; margin-bottom: 12px; }
+.hero-badges { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+.hero-badge { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 4px 12px; font-size: 11px; color: rgba(255,255,255,0.85); }
+
+/* CARD */
+.card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px var(--shadow); }
+.card-cat { font-size: 10px; color: var(--green2); font-weight: 700; letter-spacing: 0.1em; margin-bottom: 4px; }
+.card-jp { font-family: 'Noto Serif JP', serif; font-size: 15px; font-weight: 600; color: var(--dark); line-height: 1.6; }
+.card-tr { font-size: 13px; color: var(--ink2); line-height: 1.7; margin-top: 8px; padding-top: 8px; border-top: 1px solid var(--border); display: none; }
+.card-tr.v { display: block; }
+
+/* MENU GRID */
+.menu-grid { display: grid; gap: 10px; }
+.menu-section-title { font-family: 'Shippori Mincho', serif; font-size: 16px; font-weight: 700; color: var(--dark); padding: 8px 0 4px; border-bottom: 2px solid var(--light); margin-bottom: 8px; margin-top: 8px; }
+.menu-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; overflow: hidden; box-shadow: 0 2px 6px var(--shadow); display: flex; }
+.menu-accent { width: 6px; flex: none; background: var(--green2); }
+.menu-body { padding: 12px 14px; flex: 1; }
+.menu-name-jp { font-family: 'Noto Serif JP', serif; font-weight: 700; font-size: 15px; color: var(--dark); }
+.menu-name-tr { font-size: 13px; color: var(--ink2); margin-top: 3px; display: none; }
+.menu-name-tr.v { display: block; }
+.menu-desc { font-size: 12px; color: #666; margin-top: 4px; line-height: 1.5; }
+.menu-desc.v { color: var(--ink2); }
+.local-tag { display: inline-block; font-size: 10px; background: var(--green); color: #fff; padding: 1px 7px; border-radius: 10px; margin-left: 6px; font-weight: 700; vertical-align: middle; }
+
+/* INFO BLOCK */
+.info-block { background: var(--dark); color: #fff; border-radius: 14px; padding: 20px; margin-bottom: 14px; }
+.info-block h3 { font-family: 'Shippori Mincho', serif; font-size: 17px; color: #a8d880; margin-bottom: 14px; }
+.info-row { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; font-size: 14px; line-height: 1.6; }
+.info-label { color: #a8d880; font-weight: 700; flex: none; width: 80px; font-size: 12px; }
+
+/* EXPERIENCE CARD */
+.exp-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px var(--shadow); border-left: 4px solid var(--green2); }
+.exp-title { font-family: 'Shippori Mincho', serif; font-size: 17px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+.exp-title-tr { font-size: 13px; color: var(--green); margin-bottom: 8px; display: none; }
+.exp-title-tr.v { display: block; }
+.exp-price { font-size: 13px; font-weight: 700; color: var(--gold); margin: 6px 0; }
+.exp-price-tr { font-size: 12px; color: var(--ink2); display: none; }
+.exp-price-tr.v { display: block; }
+.exp-desc { font-size: 13px; color: var(--ink2); line-height: 1.7; }
+.exp-desc-tr { font-size: 12px; color: #666; margin-top: 6px; line-height: 1.6; display: none; }
+.exp-desc-tr.v { display: block; }
+
+/* ABOUT */
+.about-block { background: var(--dark); border-radius: 14px; padding: 20px; color: rgba(255,255,255,0.85); margin-bottom: 14px; }
+.about-block h3 { font-family: 'Shippori Mincho', serif; color: #a8d880; font-size: 16px; margin-bottom: 12px; }
+.about-block p { font-size: 13px; line-height: 1.8; margin-bottom: 8px; }
+.cr-box { background: var(--paper2); border: 1px solid var(--border); border-radius: 10px; padding: 14px; font-size: 12px; color: var(--ink2); line-height: 1.9; margin-bottom: 12px; }
+.cr-box strong { color: var(--dark); }
+.cr-box a { color: var(--green); }
+
+/* WASABI */
+.wasabi-card { background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px var(--shadow); }
+.wasabi-jp { font-family: 'Noto Serif JP', serif; font-size: 14px; font-weight: 600; color: var(--dark); line-height: 1.6; }
+.wasabi-tr { font-size: 13px; color: var(--ink2); margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--border); line-height: 1.7; display: none; }
+.wasabi-tr.v { display: block; }
+
+footer { text-align: center; padding: 20px 16px; font-size: 11px; color: var(--ink2); border-top: 1px solid var(--border); margin-top: 24px; line-height: 1.9; }
+
+@media (min-width: 500px) { .menu-grid { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-top">
+    <div class="header-title">
+      うつろぎ 蕎麦・山葵
+      <span>Utsurogi — Soba &amp; Wasabi / 有東木</span>
+    </div>
+    <div style="font-size:26px">🌿</div>
+  </div>
+  <div class="lang-bar">
+    <button class="lang-btn active" onclick="setLang('jp',this)">日本語</button>
+    <button class="lang-btn" onclick="setLang('英語',this)">EN</button>
+    <button class="lang-btn" onclick="setLang('中国語（簡）',this)">中文</button>
+  </div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showTab('home',this)">🏠 ホーム</button>
+    <button class="nav-tab" onclick="showTab('menu',this)">🍜 メニュー</button>
+    <button class="nav-tab" onclick="showTab('exp',this)">🎋 体験</button>
+    <button class="nav-tab" onclick="showTab('wasabi',this)">🌱 わさびの文化</button>
+    <button class="nav-tab" onclick="showTab('shop',this)">📍 店舗情報</button>
+    <button class="nav-tab" onclick="showTab('about',this)">ℹ️ このアプリについて</button>
+  </div>
+</header>
+
+<main>
+
+<!-- HOME -->
+<div id="tab-home" class="section active">
+  <div class="hero">
+    <div class="hero-jp">うつろぎ</div>
+    <div class="hero-en">Utsurogi — Soba &amp; Wasabi / 有東木 Utogi</div>
+    <div class="hero-badges">
+      <span class="hero-badge">🌿 わさび栽培発祥の地</span>
+      <span class="hero-badge">🏔 有東木</span>
+      <span class="hero-badge">🌾 地元手作り</span>
+    </div>
+  </div>
+  <div id="home-cards"></div>
+</div>
+
+<!-- MENU -->
+<div id="tab-menu" class="section">
+  <div style="background:#f0f7e8;border:1px dashed #a8c890;border-radius:10px;padding:12px 16px;margin-bottom:14px;font-size:12px;color:#3d5230;display:flex;align-items:center;gap:10px;">
+  <span style="font-size:20px">📷</span>
+  <span>メニュー写真は準備中です。<br>
+  <span style="font-size:11px;color:#5a9a42;">Photos coming soon. / 图片准备中。</span></span>
+</div><div id="menu-content"></div>
+</div>
+
+<!-- EXPERIENCE -->
+<div id="tab-exp" class="section">
+  <div id="exp-content"></div>
+</div>
+
+<!-- WASABI CULTURE -->
+<div id="tab-wasabi" class="section">
+  <div id="wasabi-content"></div>
+</div>
+
+<!-- SHOP INFO -->
+<div id="tab-shop" class="section">
+  <div class="info-block">
+    <h3>📍 店舗情報</h3>
+    <div class="info-row"><span class="info-label">店名</span><span>うつろぎ</span></div>
+    <div class="info-row"><span class="info-label">住所</span><span>〒421-2305<br>静岡市葵区有東木280-1</span></div>
+    <div class="info-row"><span class="info-label">TEL/FAX</span><span>054-298-2900</span></div>
+    <div class="info-row"><span class="info-label">営業時間</span><span>平日 10:00〜15:00<br>土日祝 9:00〜16:00</span></div>
+    <div class="info-row"><span class="info-label">定休日</span><span>毎月第3火曜日・茶期（5月）</span></div>
+    <div class="info-row"><span class="info-label">車</span><span>静岡駅より約55分</span></div>
+    <div class="info-row"><span class="info-label">バス</span><span>「有東木橋」下車すぐ</span></div>
+  </div>
+  <div id="shop-cards"></div>
+</div>
+
+<!-- ABOUT -->
+<div id="tab-about" class="section">
+  <div class="about-block">
+    <h3>📖 このアプリについて</h3>
+    <p>このガイドアプリは、わさび栽培発祥の地・有東木にある農産物加工直売施設「うつろぎ」を訪れる方に向けて、メニュー・体験・わさびの文化を多言語でご案内するために作成されました。</p>
+    <p>漢使研が現地でのフィールドワーク・聞き書きを通じて収集した情報をもとに制作しています。</p>
+  </div>
+  <div class="about-block">
+    <h3>👥 制作チーム</h3>
+    <p><strong style="color:#a8d880">漢使研（漢字使用研究会）</strong><br>静岡大学 人文社会科学部</p>
+    <p>指導教員：張盛開<br>
+    学生：張沢宇・謝佳瑶・遊天一・Nguyen Thu Trang・柴田南帆・何俊文・Nguyen Thi Thu Men・Tran Xuan Hieu・MAY NAN HTIKE</p>
+    <p>アドバイザー：名倉仁美（常葉大学）</p>
+  </div>
+  <div class="about-block">
+    <h3>📚 制作経緯</h3>
+    <p>わさび栽培発祥の地・有東木にある「うつろぎ」は、地元のお母さんたちが運営する農産物加工直売施設です。蕎麦・山葵メニューの多言語化を通じて、外国人来訪者が言語の壁なく食文化を楽しめる環境づくりに取り組みました。</p>
+    <p>メニューは漢使研フィールドワーク時にNotionページ（日本語・英語・中国語）として整備されたものを基に作成しています。</p>
+  </div>
+  <div class="about-block">
+    <h3>🙏 謝辞</h3>
+    <p>うつろぎのスタッフの皆様、有東木の地域の皆様には、フィールドワーク・聞き書きへのご協力を賜りました。心より感謝申し上げます。</p>
+  </div>
+  <div class="cr-box">
+    <strong>© 2025 漢使研（Kanshiken）・静岡大学</strong><br>
+    制作：静岡大学 漢使研（漢字使用研究会）<br>
+    協力：うつろぎ（有東木農産物加工直売施設）<br>
+    本アプリのデータ・翻訳の著作権は漢使研および静岡大学に帰属します。<br>
+    非営利・教育目的での利用は出典明記の上ご利用いただけます。商用利用・無断転載はお断りします。<br><br>
+    <strong>© 2025 Kanshiken, Shizuoka University. All rights reserved.</strong><br>
+    Cooperation: Utsurogi (Utogi Agricultural Products Processing &amp; Direct Sales Facility)
+  </div>
+  <div class="cr-box">
+    <strong>ライセンス</strong>：翻訳データ CC BY-NC-SA 4.0<br>
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.ja" target="_blank">creativecommons.org/licenses/by-nc-sa/4.0</a><br><br>
+    <strong>参考資料</strong>：<br>
+    ・有東木散策マップ（農林産物加工直売施設「うつろぎ」発行）<br>
+    ・静岡水わさびの伝統栽培（静岡農業遺産推進協議会）<br>
+    ・漢使研 Notionメニューページ（JP・EN・中文）
+  </div>
+</div>
+
+</main>
+
+<footer>
+  © 2025 漢使研・静岡大学 ／ Kanshiken, Shizuoka University<br>
+  協力：うつろぎ（静岡市葵区有東木280-1 TEL:054-298-2900）
+</footer>
+
+<script>
+const DATA = [{"id": "u01", "cat": "店舗紹介", "jp": "うつろぎ 蕎麦・山葵メニュー", "langs": {"英語": "Utsurogi Soba & Wasabi Menu", "中国語（簡）": "伍兹罗尼（树洞）山葵爱荞麦 菜单"}}, {"id": "u02", "cat": "アレルゲン情報", "jp": "当店の料理はそば粉、小麦粉を使用しております。", "langs": {"英語": "We use buckwheat flour and wheat flour.", "中国語（簡）": "本店料理使用荞麦粉和小麦粉。"}}, {"id": "u03", "cat": "アレルゲン情報", "jp": "すべて地元の材料で手作りしたものになります。", "langs": {"英語": "Everything is made in house with fresh & local ingredients.", "中国語（簡）": "均为利用本地新鲜食材自家手作。"}}, {"id": "u04", "cat": "一品料理", "jp": "みそ汁 味噌汁", "langs": {"英語": "Miso Soup", "中国語（簡）": "味增汤"}}, {"id": "u05", "cat": "一品料理", "jp": "てんぷら 天ぷら 天麩羅", "langs": {"英語": "Tempura: 5-piece fried vegetables.", "中国語（簡）": "天妇罗（5件炸蔬菜）"}}, {"id": "u06", "cat": "一品料理", "jp": "ミニ天丼", "langs": {"英語": "Mini Tempura-don: 3-piece fried vegetables over half-size rice.", "中国語（簡）": "迷你天妇罗饭（3件炸蔬菜盖半碗饭）"}}, {"id": "u07", "cat": "一品料理", "jp": "さびめし さび飯", "langs": {"英語": "Wasabi-meshi: Japanese horseradish bonito rice.", "中国語（簡）": "山葵饭（芥末鲣鱼饭）"}}, {"id": "u08", "cat": "一品料理", "jp": "天丼", "langs": {"英語": "Tempura-don: 5-piece fried vegetables over rice.", "中国語（簡）": "天妇罗饭（5件炸蔬菜盖饭）"}}, {"id": "u09", "cat": "蕎麦", "jp": "かけそば", "langs": {"英語": "Kake Soba: hot buckwheat noodles in broth.", "中国語（簡）": "一碗阳春面（热荞麦面汤）"}}, {"id": "u10", "cat": "蕎麦", "jp": "もりそば", "langs": {"英語": "Mori Soba: cold buckwheat noodles with dipping sauce.", "中国語（簡）": "冷荞麦面（配蘸汁）"}}, {"id": "u11", "cat": "蕎麦", "jp": "おろし", "langs": {"英語": "Oroshi: choice of hot/cold soba with grated white radish.", "中国語（簡）": "冷/热荞麦面加萝卜泥"}}, {"id": "u12", "cat": "蕎麦", "jp": "かけ天", "langs": {"英語": "Kake-ten: kake soba with tempura.", "中国語（簡）": "阳春面加天妇罗"}}, {"id": "u13", "cat": "蕎麦", "jp": "もり天", "langs": {"英語": "Mori-ten: mori soba with tempura.", "中国語（簡）": "冷荞麦加天妇罗"}}, {"id": "u14", "cat": "定食", "jp": "うつろぎ定食", "langs": {"英語": "House Special Set (Utsurogi): choice of hot/cold soba, tempura, burdock, wasabi sides, served with rice and house dessert.", "中国語（簡）": "伍兹罗尼特别套餐：冷/热荞麦面、天妇罗、山葵配料、白饭，配甜点"}}, {"id": "u15", "cat": "定食", "jp": "さびめし定食", "langs": {"英語": "House Special Set (Sabi-meshi): choice of hot/cold soba, tempura, burdock, served with wasabi rice and house dessert.", "中国語（簡）": "山葵饭特别套餐：冷/热荞麦面、天妇罗、山葵饭，配甜点"}}, {"id": "u16", "cat": "デザート", "jp": "アイスクリーム（お茶*・わさび*・バニラ）", "langs": {"英語": "Ice Cream: green tea*, wasabi*, vanilla. (*Locally produced)", "中国語（簡）": "冰淇淋：绿茶*、芥末*、香草（*自产）"}}, {"id": "u17", "cat": "デザート", "jp": "金つば 金鍔", "langs": {"英語": "Mugwort Cake with Red Azuki Beans.", "中国語（簡）": "艾草（蒿）饼，红豆馅"}}, {"id": "u18", "cat": "デザート", "jp": "ほおばもち 朴葉餅", "langs": {"英語": "Hooba Mochi: magnolia leaf-wrapped rice cake.", "中国語（簡）": "朴叶米粉年糕"}}, {"id": "uts_info01", "cat": "店舗情報", "jp": "うつろぎ", "langs": {"英語": "Utsurogi", "中国語（簡）": "伍兹罗尼（树洞）"}}, {"id": "uts_info02", "cat": "店舗情報", "jp": "〒421-2305 静岡市葵区有東木280-1", "langs": {"英語": "280-1 Utogi, Aoi-ku, Shizuoka 421-2305", "中国語（簡）": "静冈市葵区有东木280-1"}}, {"id": "uts_info03", "cat": "店舗情報", "jp": "TEL/FAX：054-298-2900", "langs": {"英語": "TEL/FAX: 054-298-2900", "中国語（簡）": "电话/传真：054-298-2900"}}, {"id": "uts_info04", "cat": "店舗情報", "jp": "営業時間：平日 10:00〜15:00、土日祝 9:00〜16:00", "langs": {"英語": "Hours: Weekdays 10:00–15:00, Weekends & Holidays 9:00–16:00", "中国語（簡）": "营业时间：平日10:00〜15:00，周末和假日9:00〜16:00"}}, {"id": "uts_info05", "cat": "店舗情報", "jp": "定休日：毎月第3火曜日・茶期（5月）", "langs": {"英語": "Closed: 3rd Tuesday of each month & during tea season (May)", "中国語（簡）": "定休日：每月第3个星期二・茶期（5月）"}}, {"id": "uts_acc01", "cat": "アクセス", "jp": "静岡駅より車で約55分", "langs": {"英語": "About 55 minutes by car from Shizuoka Station", "中国語（簡）": "从静冈站驱车约55分钟"}}, {"id": "uts_acc02", "cat": "アクセス", "jp": "バス停「有東木橋」下車すぐ", "langs": {"英語": "Just a short walk from bus stop \"Utogi-bashi\"", "中国語（簡）": "在公交站\"有东木桥\"下车即到"}}, {"id": "uts_acc03", "cat": "アクセス", "jp": "静岡駅から安倍川に沿って約30km、途中山道3km", "langs": {"英語": "About 30km along the Abe River from Shizuoka Station, then 3km of mountain road", "中国語（簡）": "从静冈站出发沿安倍川约30公里，途中还有3公里山路"}}, {"id": "uts_intro01", "cat": "店舗紹介", "jp": "ご来店のお客様には、本当に感謝でいっぱい。まごころ込めて作ったわさび漬け、お菓子などをご用意しております。", "langs": {"中国語（簡）": "尊敬的顾客，欢迎您的到来。在这里，您可以享用本店为您精心准备的腌山葵、和果子等。"}}, {"id": "uts_intro02", "cat": "店舗紹介", "jp": "どうぞ、ご家族お揃いで有東木の自然を満喫してください。", "langs": {"中国語（簡）": "您可以携家人一起一边观赏有东木的自然美景，一边尽情享受。"}}, {"id": "uts_intro03", "cat": "店舗紹介", "jp": "「うつろぎ」で、皆様のお来店をお待ちしております。", "langs": {"英語": "\"Utsurogi\" welcomes your visit.", "中国語（簡）": "\"伍兹罗尼（树洞）\"全体人员，恭候您的光临。"}}, {"id": "uts_intro04", "cat": "店舗紹介", "jp": "地元のお母さん方が親切に指導してくれます。", "langs": {"中国語（簡）": "当地的妈妈们会亲切地给我们进行指导。"}}, {"id": "uts_exp01", "cat": "体験メニュー", "jp": "わさび漬け体験", "langs": {"英語": "Wasabi Pickling Experience", "中国語（簡）": "腌山葵体验"}}, {"id": "uts_exp02", "cat": "体験メニュー", "jp": "一セット 1,200円（時間：約30分）小学生以上・要予約", "langs": {"英語": "1 set: ¥1,200 (approx. 30 min) / Elementary school age and above / Reservation required", "中国語（簡）": "一套：1200日元（耗时：约30分钟）小学生以上，需预约"}}, {"id": "uts_exp03", "cat": "体験メニュー", "jp": "わさび栽培発祥の地でわさび商品を開発する「うつろぎ」の自慢の逸品。わさび漬けを、元気なお母さんたちに教わりながら作ってみませんか？", "langs": {"中国語（簡）": "腌山葵是山葵栽培发源地\"伍兹罗尼（树洞）\"的招牌菜！不如跟着元气满满的妈妈们体验一下腌山葵的制作呢？"}}, {"id": "uts_exp04", "cat": "体験メニュー", "jp": "そば打ち体験", "langs": {"英語": "Soba Noodle Making Experience", "中国語（簡）": "手擀荞麦面体验"}}, {"id": "uts_exp05", "cat": "体験メニュー", "jp": "一セット 2,000円（時間：約60分）小学生以上・要予約", "langs": {"英語": "1 set: ¥2,000 (approx. 60 min) / Elementary school age and above / Reservation required", "中国語（簡）": "一套：2000日元（耗时：约60分钟）小学生以上，需预约"}}, {"id": "uts_exp06", "cat": "体験メニュー", "jp": "有東木の「良質なわさび」は清流に恵まれた水で育ちます。ですから打つそばは、そばの「香り」も「味」も格別！", "langs": {"中国語（簡）": "有东木的高品质山葵是由山间清水灌溉培育而成，擀出来的荞麦面也有着特别的香味和味道。"}}, {"id": "uts_exp07", "cat": "体験メニュー", "jp": "体験のご予約は事前に電話でご連絡ください。うつろぎ：054-298-2900", "langs": {"英語": "Please call ahead to make a reservation: Utsurogi 054-298-2900", "中国語（簡）": "如果想要体验的话，请事先电话预约。伍兹罗尼（树洞）：054-298-2900"}}, {"id": "uts_wasabi01", "cat": "わさびの文化", "jp": "わさびは日本の固有種で、和食にはなくてはならない香辛料。最近では肉料理にも用途が広がるなど、世界が注目する食材です。", "langs": {"中国語（簡）": "芥末是日本固有的品种，是日本料理不可缺少的调味料。近来也广泛应用于肉料理，成为受到世界注目的食材。"}}, {"id": "uts_wasabi02", "cat": "わさびの文化", "jp": "わさび栽培は、今から400年以上前に現在の静岡市葵区有東木で始まり、栽培発祥の地とされています。", "langs": {"中国語（簡）": "芥末的栽培距今已有400多年的历史，其发祥地位于静冈市葵区有东木。"}}, {"id": "uts_wasabi03", "cat": "わさびの文化", "jp": "1607年、江戸幕府初代将軍・徳川家康が献上されたわさびを気に入り、有東木から門外不出の御法度品としたという伝説が残されています。", "langs": {"中国語（簡）": "相传1607年，江户幕府初代将军德川家康非常喜爱进贡的芥末，于是下令芥末不得带出有东木地区。"}}, {"id": "uts_wasabi04", "cat": "わさびの文化", "jp": "静岡県のわさびは、生産量・栽培面積・産出額ともに日本一。産出額は全国シェアの約7割を占めます。", "langs": {"中国語（簡）": "静冈县的芥末产量、种植面积、产出额均为日本第一，产出额约占日本全国市场份额的七成。"}}, {"id": "uts_wasabi05", "cat": "わさびの文化", "jp": "「静岡水わさびの伝統栽培」は世界農業遺産（FAO認定）に認定されています。", "langs": {"中国語（簡）": "\"静冈水芥末的传统栽培\"已被认定为世界农业遗产（FAO认定）。"}}, {"id": "uts_utogi01", "cat": "有東木", "jp": "有東木は清流に恵まれ、季節彩豊かな山葵の里です。", "langs": {"中国語（簡）": "有东木是孕育清流、四季色彩丰富的山葵之乡。"}}, {"id": "uts_utogi02", "cat": "有東木", "jp": "山祭り（1月）・小正月（2月）・白髭神社奉納舞（4・10月）・盆踊り（8月）など伝統行事が盛んです。", "langs": {"中国語（簡）": "山祭（1月）・元宵节（2月）・白须神社奉纳舞（4・10月）・盂兰盆舞（8月）等传统活动十分盛行。"}}, {"id": "uts_utogi03", "cat": "有東木", "jp": "「有東木の盆踊」は国指定重要無形民俗文化財に指定されています。", "langs": {"中国語（簡）": "「有东木盂兰盆舞」已被列为国家指定重要非物质民俗文化遗产。"}}, {"id": "uts_env01", "cat": "環境", "jp": "自然を大切にしましょう。当施設では、100％自然に還る石けんを使用しています。", "langs": {"中国語（簡）": "保护自然，人人有责。本设施使用的都是能100%回归自然的肥皂。"}}];
+let currentLang = 'jp';
+
+function setLang(lang, btn) {
+  currentLang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderAll();
+}
+
+function showTab(id, btn) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+
+function t(e) {
+  if (currentLang === 'jp') return '';
+  return e.langs && e.langs[currentLang] ? e.langs[currentLang] : '';
+}
+
+function esc(s) {
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+function renderAll() {
+  renderHome();
+  renderMenu();
+  renderExp();
+  renderWasabi();
+  renderShop();
+}
+
+function renderHome() {
+  const cats = ['店舗紹介','アレルゲン情報','環境'];
+  const entries = DATA.filter(e => cats.includes(e.cat));
+  document.getElementById('home-cards').innerHTML = entries.map(e => {
+    const tr = t(e);
+    return `<div class="card">
+      <div class="card-cat">${esc(e.cat)}</div>
+      <div class="card-jp">${esc(e.jp)}</div>
+      ${tr ? `<div class="card-tr v">${esc(tr)}</div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function renderMenu() {
+  const sections = [
+    { label: 'I　一品料理', cat: '一品料理', label_en: 'I　À la carte', label_cn: 'I　单品料理' },
+    { label: 'II　蕎麦', cat: '蕎麦', label_en: 'II　Soba', label_cn: 'II　荞麦面' },
+    { label: 'III　定食', cat: '定食', label_en: 'III　Set Menu', label_cn: 'III　套餐' },
+    { label: 'IV　デザート', cat: 'デザート', label_en: 'IV　Dessert', label_cn: 'IV　甜点' },
+    { label: 'V　アレルゲン情報', cat: 'アレルゲン情報', label_en: 'V　Allergen Info', label_cn: 'V　过敏原信息' },
+  ];
+
+  let html = '';
+  for (const sec of sections) {
+    const entries = DATA.filter(e => e.cat === sec.cat);
+    if (!entries.length) continue;
+    const sLabel = currentLang === '英語' ? sec.label_en : currentLang === '中国語（簡）' ? sec.label_cn : sec.label;
+    html += `<div class="menu-section-title">${esc(sLabel)}</div>`;
+    html += `<div class="menu-grid">`;
+    html += entries.map(e => {
+      const tr = t(e);
+      const isLocal = e.jp.includes('うつろぎ産') || e.jp.includes('*');
+      return `<div class="menu-card">
+        <div class="menu-accent"></div>
+        <div class="menu-body">
+          <div class="menu-name-jp">${esc(e.jp)}${isLocal ? '<span class="local-tag">★自家産</span>' : ''}</div>
+          ${tr ? `<div class="menu-name-tr v">${esc(tr)}</div>` : ''}
+        </div>
+      </div>`;
+    }).join('');
+    html += `</div>`;
+  }
+  document.getElementById('menu-content').innerHTML = html;
+}
+
+function renderExp() {
+  const entries = DATA.filter(e => e.cat === '体験メニュー');
+  // わさび漬けとそば打ちに分ける
+  let html = '';
+  let current = null;
+  const groups = [];
+  for (const e of entries) {
+    if (e.jp.includes('体験') && !e.jp.includes('ご予約')) {
+      current = { title: e, price: null, desc: null };
+      groups.push(current);
+    } else if (current && (e.jp.includes('円') || e.jp.includes('セット'))) {
+      current.price = e;
+    } else if (current && !current.desc && e.jp.length > 20) {
+      current.desc = e;
+    }
+  }
+  // 予約情報
+  const resv = entries.find(e => e.jp.includes('ご予約'));
+
+  html = groups.map(g => {
+    const tr_title = g.title ? t(g.title) : '';
+    const tr_price = g.price ? t(g.price) : '';
+    const tr_desc  = g.desc  ? t(g.desc)  : '';
+    return `<div class="exp-card">
+      <div class="exp-title">${esc(g.title.jp)}</div>
+      ${tr_title ? `<div class="exp-title-tr v">${esc(tr_title)}</div>` : ''}
+      ${g.price ? `<div class="exp-price">${esc(g.price.jp)}</div>` : ''}
+      ${tr_price ? `<div class="exp-price-tr v">${esc(tr_price)}</div>` : ''}
+      ${g.desc ? `<div class="exp-desc">${esc(g.desc.jp)}</div>` : ''}
+      ${tr_desc ? `<div class="exp-desc-tr v">${esc(tr_desc)}</div>` : ''}
+    </div>`;
+  }).join('');
+
+  if (resv) {
+    const tr_resv = t(resv);
+    html += `<div class="card" style="border-left:4px solid var(--gold)">
+      <div class="card-jp">📞 ${esc(resv.jp)}</div>
+      ${tr_resv ? `<div class="card-tr v">${esc(tr_resv)}</div>` : ''}
+    </div>`;
+  }
+
+  document.getElementById('exp-content').innerHTML = html;
+}
+
+function renderWasabi() {
+  const cats = ['わさびの文化','有東木'];
+  const entries = DATA.filter(e => cats.includes(e.cat));
+  document.getElementById('wasabi-content').innerHTML = entries.map(e => {
+    const tr = t(e);
+    return `<div class="wasabi-card">
+      <div class="card-cat">${esc(e.cat)}</div>
+      <div class="wasabi-jp">${esc(e.jp)}</div>
+      ${tr ? `<div class="wasabi-tr v">${esc(tr)}</div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+function renderShop() {
+  const cats = ['アクセス'];
+  const entries = DATA.filter(e => cats.includes(e.cat));
+  document.getElementById('shop-cards').innerHTML = entries.map(e => {
+    const tr = t(e);
+    return `<div class="card">
+      <div class="card-cat">${esc(e.cat)}</div>
+      <div class="card-jp">${esc(e.jp)}</div>
+      ${tr ? `<div class="card-tr v">${esc(tr)}</div>` : ''}
+    </div>`;
+  }).join('');
+}
+
+renderAll();
+</script>
+</body>
+</html>
